@@ -249,6 +249,10 @@ pub mod __private {
         pub use crate::state::*;
     }
 
+    // The starting point for user defined error codes.
+    // Errors 0-100 are reserved for the framework.
+    pub const ERROR_CODE_OFFSET: u32 = 100;
+
     // Calculates the size of an account, which may be larger than the deserialized
     // data in it. This trait is currently only used for `#[state]` accounts.
     #[doc(hidden)]

@@ -64,11 +64,9 @@ pub fn generate(error: Error) -> proc_macro2::TokenStream {
 
         impl std::convert::From<Error> for ProgramError {
             fn from(e: Error) -> ProgramError {
-            // Errors 0-100 are reserved for the framework.
-            let error_offset = 100u32;
                 match e {
                     Error::ProgramError(e) => e,
-                    Error::ErrorCode(c) => ProgramError::Custom(c as u32 + error_offset),
+                    Error::ErrorCode(c) => ProgramError::Custom(c as u32 + anchor_lang::__private::ERROR_CODE_OFFSET),
                 }
             }
         }
