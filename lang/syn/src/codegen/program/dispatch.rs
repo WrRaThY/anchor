@@ -53,7 +53,7 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
                         quote! {
                             #sighash_tts => {
                                 let ix = instruction::state::#ix_name::deserialize(&mut ix_data)
-																		.map_err(|_| anchor_lang::__private::ErrorCode::InstructionDidNotDeserialize)?;
+                                    .map_err(|_| anchor_lang::__private::ErrorCode::InstructionDidNotDeserialize)?;
                                 let instruction::state::#variant_arm = ix;
                                 __private::__state::#ix_method_name(program_id, accounts, #(#ix_arg_names),*)
                             }

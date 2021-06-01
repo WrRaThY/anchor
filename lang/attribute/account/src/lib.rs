@@ -327,8 +327,8 @@ pub fn zero_copy(
     let account_strct = parse_macro_input!(item as syn::ItemStruct);
 
     proc_macro::TokenStream::from(quote! {
-            #[derive(anchor_lang::__private::ZeroCopyAccessor, Copy, Clone)]
-            #[repr(packed)]
-            #account_strct
+        #[derive(anchor_lang::__private::ZeroCopyAccessor, Copy, Clone)]
+        #[repr(packed)]
+        #account_strct
     })
 }

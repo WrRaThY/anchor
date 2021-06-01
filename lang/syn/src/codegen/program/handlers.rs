@@ -459,7 +459,7 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
 
                                             let mut remaining_accounts: &[AccountInfo] = accounts;
                                             if remaining_accounts.is_empty() {
-																								return Err(anchor_lang::__private::ErrorCode::AccountNotEnoughKeys.into());
+                                                return Err(anchor_lang::__private::ErrorCode::AccountNotEnoughKeys.into());
                                             }
 
                                             // Deserialize the program state account.
