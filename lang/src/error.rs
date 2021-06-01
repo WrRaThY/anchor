@@ -1,7 +1,9 @@
+use crate::error;
 use solana_program::program_error::ProgramError;
 use std::convert::From;
 use std::fmt::{Debug, Display, Error as FmtError, Formatter};
 
+/*
 #[doc(hidden)]
 #[derive(thiserror::Error, Debug)]
 pub enum Error {
@@ -10,10 +12,9 @@ pub enum Error {
     #[error("{0:?}")]
     ErrorCode(#[from] ErrorCode),
 }
-
+*/
 // Error codes that can be returned by internal framework code.
-#[derive(Debug, Clone, Copy)]
-#[repr(u32)]
+#[error]
 pub enum ErrorCode {
     // Instructions.
     InstructionMissing = 100,
@@ -22,8 +23,7 @@ pub enum ErrorCode {
     InstructionDidNotSerialize,
 
     // IDL instructions.
-    IdlInstructionInvalid = 120,
-    IdlInstructionStub,
+    IdlInstructionStub = 120,
     IdlInstructionInvalidProgram,
 
     // Constraints.
@@ -39,6 +39,7 @@ pub enum ErrorCode {
     ConstraintAssociated,
     ConstraintAssociatedInit,
 
+    // Accounts.
     AccountDiscriminatorAlreadySet = 160,
     AccountDiscriminatorNotFound,
     AccountDiscriminatorMismatch,
@@ -55,6 +56,7 @@ pub enum ErrorCode {
     Deprecated = 299,
 }
 
+/*
 impl Display for ErrorCode {
     fn fmt(&self, fmt: &mut Formatter<'_>) -> Result<(), FmtError> {
         <Self as Debug>::fmt(self, fmt)
@@ -77,3 +79,4 @@ impl From<ErrorCode> for ProgramError {
         return Error::ErrorCode(e).into();
     }
 }
+*/

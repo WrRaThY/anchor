@@ -20,7 +20,7 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
                 let mut data: &[u8] = idl_ix_data;
 
                 let ix = anchor_lang::idl::IdlInstruction::deserialize(&mut data)
-                    .map_err(|_| anchor_lang::__private::ErrorCode::IdlInstructionInvalid)?;
+                    .map_err(|_| anchor_lang::__private::ErrorCode::InstructionDidNotDeserialize)?;
 
                 match ix {
                     anchor_lang::idl::IdlInstruction::Create { data_len } => {
