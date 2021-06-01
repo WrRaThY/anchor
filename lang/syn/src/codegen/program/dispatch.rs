@@ -182,7 +182,7 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
                 #(#global_dispatch_arms)*
                 _ => {
                     msg!("Fallback functions are not supported. If you have a use case, please file an issue.");
-                    Err(ProgramError::Custom(99))
+                    Err(anchor_lang::__private::ErrorCode::InstructionNotFound.into())
                 }
             }
         }

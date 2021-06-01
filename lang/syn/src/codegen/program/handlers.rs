@@ -20,7 +20,7 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
                 let mut data: &[u8] = idl_ix_data;
 
                 let ix = anchor_lang::idl::IdlInstruction::deserialize(&mut data)
-                    .map_err(|_| ProgramError::Custom(2))?; // todo
+                    .map_err(|_| anchor_lang::__private::ErrorCode::IdlInstructionInvalid.into())?;
 
                 match ix {
                     anchor_lang::idl::IdlInstruction::Create { data_len } => {
@@ -55,7 +55,7 @@ pub fn generate(program: &Program) -> proc_macro2::TokenStream {
             #[inline(never)]
             #[cfg(feature = "no-idl")]
             pub fn __idl_dispatch(program_id: &Pubkey, accounts: &[AccountInfo], idl_ix_data: &[u8]) -> ProgramResult {
-                Err(anchor_lang::solana_program::program_error::ProgramError::Custom(99))
+                Err(anchor_lang::__private::IdlInstructionStub.into())
             }
 
             // One time IDL account initializer. Will faill on subsequent
