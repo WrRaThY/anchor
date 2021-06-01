@@ -181,7 +181,7 @@ pub fn generate_constraint_literal(c: &ConstraintLiteral) -> proc_macro2::TokenS
     };
     quote! {
         if !(#lit) {
-            return Err(anchor_lang::solana_program::program_error::ProgramError::Custom(1)); // todo: error codes
+            return Err(anchor_lang::__private::ErrorCode::Deprecated.into());
         }
     }
 }

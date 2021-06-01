@@ -15,19 +15,19 @@ pub enum Error {
 #[derive(Debug, Clone, Copy)]
 #[repr(u32)]
 pub enum ErrorCode {
-    //
-    WrongSerialization = 1,
-
     // Instructions.
-    InstructionMissing,
-    InstructionNotFound,
+    InstructionMissing = 100,
+    InstructionFallbackNotFound,
+    InstructionDidNotDeserialize,
+    InstructionDidNotSerialize,
 
     // IDL instructions.
-    IdlInstructionInvalid,
+    IdlInstructionInvalid = 120,
     IdlInstructionStub,
+    IdlInstructionInvalidProgram,
 
     // Constraints.
-    ConstraintMut,
+    ConstraintMut = 140,
     ConstraintBelongsTo,
     ConstraintSigner,
     ConstraintRaw,
@@ -38,6 +38,21 @@ pub enum ErrorCode {
     ConstraintState,
     ConstraintAssociated,
     ConstraintAssociatedInit,
+
+    AccountDiscriminatorAlreadySet = 160,
+    AccountDiscriminatorNotFound,
+    AccountDiscriminatorMismatch,
+    AccountDidNotDeserialize,
+    AccountDidNotSerialize,
+    AccountNotEnoughKeys,
+    AccountNotMutable,
+    AccountNotProgramOwned,
+
+    // State.
+    StateInvalidAddress = 180,
+
+    // Used for APIs that shouldn't be used anymore.
+    Deprecated = 299,
 }
 
 impl Display for ErrorCode {
