@@ -47,10 +47,11 @@ use syn::parse_macro_input;
 /// parsers  and IDLs can map error codes to error messages.
 #[proc_macro_attribute]
 pub fn error(
-    _args: proc_macro::TokenStream,
+    args: proc_macro::TokenStream,
     input: proc_macro::TokenStream,
 ) -> proc_macro::TokenStream {
+		let args = syn::parse::<anchor_syn::ErrorArgs as Parse>(args);
     let mut error_enum = parse_macro_input!(input as syn::ItemEnum);
-    let error = error_codegen::generate(error_parser::parse(&mut error_enum));
+    let error = error_codegen::generate(error_parser::parse(&mut error_enum, args));
     proc_macro::TokenStream::from(error)
 }

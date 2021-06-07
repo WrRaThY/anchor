@@ -250,9 +250,6 @@ pub mod __private {
     }
 
     // The starting point for user defined error codes.
-    // Errors 0-100 are not used (so as not to overlap with other programs
-    // in existance). 100-299 are reserved for the framework. 300 and up are
-    // for user programs.
     pub const ERROR_CODE_OFFSET: u32 = 300;
 
     // Calculates the size of an account, which may be larger than the deserialized
